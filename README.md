@@ -1,1 +1,1 @@
-# VeraGameServer
+# GameServer
