@@ -1,0 +1,17 @@
+syntax = "proto3";
+import "MsgID.proto";
+
+package Vera;
+
+message LoginReq
+{
+    string account = 1;
+    string passward = 2;
+}
+
+message LoginAck
+{
+    ErrorCodeID error = 1;
+    string account = 2;
+    string passward = 3;
+}

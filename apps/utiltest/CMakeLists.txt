@@ -1,0 +1,13 @@
+aux_source_directory(. APP_SRC_LIST)
+
+# message("CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
+# message("CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
+SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+foreach(APP_SRC ${APP_SRC_LIST})
+    string(REGEX REPLACE "^\\./|\\.c[a-zA-Z0-9_]*$" "" APP_NAME ${APP_SRC})
+    add_executable(${APP_NAME} ${APP_SRC})
+    target_include_directories(${APP_NAME} PUBLIC ${SUB_DIR_LIST})
+    add_dependencies(${APP_NAME} ${MY_LIB_NAME})
+    target_link_libraries(${APP_NAME} ${MY_LIB_NAME} -lpthread -lprotobuf)
+    message("${APP_NAME} link: ${MY_LIB_NAME}")
+endforeach()

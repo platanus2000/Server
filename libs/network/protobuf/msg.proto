@@ -1,0 +1,56 @@
+syntax="proto3";
+package pb;
+
+option csharp_namespace="Pb";
+
+message SyncPid
+{
+    int32 Pid = 1;
+    string Username = 2;
+}
+
+message Player
+{
+    int32 Pid = 1;
+    Position pos = 2;
+    string UserName = 3;
+}
+
+message SyncPlayers
+{
+    repeated Player ps = 1;
+}
+
+message Position
+{
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float v = 4;        //方向
+    int32 hp = 5;
+}
+
+message MovePackage
+{
+    Position Pos = 1;
+    int32 actionData = 2;
+}
+
+message BroadCast
+{
+    int32 Pid = 1;
+    int32 Tp = 2;
+    //根据tp不同，Broadcast消息会包含： 聊天内容或初始位置(p)或新位置p
+    oneof Data
+    {
+        string Content = 3;
+        Position Pos = 4;
+        //预留
+        int32 ActionData = 5;
+    }
+}
+
+message Talk
+{
+    string Content = 1;
+}

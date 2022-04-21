@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package Vera;
+
+enum MsgID
+{
+    MsgNone_ID  = 0;
+    LoginReq_ID = 1;
+    LoginAck_ID = 2;
+};
+
+enum ErrorCodeID
+{
+    AckSuccess_0 = 0;
+};
